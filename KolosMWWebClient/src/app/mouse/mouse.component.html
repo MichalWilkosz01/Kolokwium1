@@ -1,0 +1,25 @@
+<button (click)="onPageChange()">
+  {{ isFormActive ? 'Dodaj myszke' : 'Anuluj dodawanie myszki' }}
+</button>
+
+<div *ngIf="isFormActive">
+  <table border="1">
+      <thead>
+          <th>ID</th>
+          <th>Model</th>
+          <th>DPI</th>
+          <th>Akcja</th>
+      </thead>
+      <tbody>
+          <tr
+              *ngFor="let m of data"
+              [app-mouse-row]="m"
+              (choosed)="onChoosedRow($event)">
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+<div *ngIf="!isFormActive">
+  <app-mouse-form (submit)="onPageChange()"></app-mouse-form>
+</div>
